@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinity etc. | Product Consulting by Travis Nelson</title>
+    <style>
+        /* Global Styles */
+        :root {
+            --primary: #28a9e0;
+            --secondary: #104961;
+            --accent: #a6cdde;
+            --light: #eeeeee;
+            --dark: #333333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Open Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--dark);
+            color: white;
+            padding: 20px 0;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+	    color: var(--primary);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.8)), url('/api/placeholder/1200/600') center/cover;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--secondary);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #2980b9;
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            max-width: 600px;
+            margin: 0 auto;
+            color: #666;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-gap: 30px;
+        }
+        
+        .service-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+        
+        /* Experience Section */
+        .experience {
+            background-color: #f9f9f9;
+            padding: 80px 0;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--secondary);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background-color: white;
+            border: 4px solid var(--secondary);
+            border-radius: 50%;
+            top: 15px;
+            z-index: 1;
+        }
+        
+        .left {
+            left: 0;
+        }
+        
+        .right {
+            left: 50%;
+        }
+        
+        .left::after {
+            right: -17px;
+        }
+        
+        .right::after {
+            left: -17px;
+        }
+        
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: white;
+            position: relative;
+            border-radius: 6px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .timeline-content h3 {
+            margin-top: 0;
+            color: var(--primary);
+            font-size: 1.4rem;
+        }
+        
+        .timeline-date {
+            font-weight: bold;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        
+        /* About Section */
+        .about {
+            padding: 80px 0;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 40px;
+            align-items: center;
+        }
+        
+        .about-text h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .about-text p {
+            margin-bottom: 15px;
+        }
+        
+        .about-image img {
+            border-radius: 10px;
+            width: 100%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Expertise Section */
+        .expertise {
+            background-color: #f9f9f9;
+            padding: 80px 0;
+        }
+        
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .expertise-item {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .expertise-item h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .expertise-icon {
+            margin-right: 10px;
+            color: var(--secondary);
+            font-size: 1.5rem;
+        }
+        
+        /* CTA Section */
+        .cta {
+            background-color: var(--primary);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta p {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            font-size: 1.2rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .footer-logo span {
+            color: var(--secondary);
+        }
+        
+        .social-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .social-links li {
+            margin-left: 15px;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .about-content,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-image {
+                order: -1;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item::after {
+                left: 15px;
+            }
+            
+            .right {
+                left: 0%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">Infinity Etc.</div>
+                <ul class="nav-links">
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#expertise">Expertise</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Strategic Product Consulting</h1>
+            <p>15+ years of experience guiding early-stage startups from 0-to-1 in complex, collaborative, and fast-moving environments.</p>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Services</h2>
+                <p>Specialized consulting to help you build exceptional products and high-performing teams.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Product Strategy</h3>
+                    <p>Define clear product vision, roadmaps, and priorities that align with business objectives. Specializing in taking products from 0-to-1 in complex environments.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Team Building</h3>
+                    <p>Build and organize high-performing product teams. Implement effective workflows and communication processes between design, engineering, and other stakeholders.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Growth & Execution</h3>
+                    <p>Develop metrics-driven strategies for product growth, user acquisition, and retention. Create and execute multi-phased roadmaps with measurable outcomes.</p>
+                </div>
+                <div class="service-card">
+                    <h3>User Research</h3>
+                    <p>Conduct comprehensive research to align product decisions with user needs. Implement design thinking methodologies to improve product-market fit.</p>
+                </div>
+                <div class="service-card">
+		    <h3>Business Strategy</h3>
+                    <p>Optimize pricing models, P&L management, and business growth strategies. Create sustainable revenue plans for products at various stages.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Digital Transformation</h3>
+                    <p>Guide companies through technological change, particularly in fintech, blockchain, and AI. Implement modern tools and processes for increased efficiency.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience">
+        <div class="container">
+            <div class="section-title">
+                <h2>Career Highlights</h2>
+                <p>A track record of leadership across fintech, blockchain, AI, and SaaS products.</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <div class="timeline-date">January 2024−Present</div>
+                        <h3>Independent Consultant</h3>
+                        <p>Early-stage startup consulting on product strategy, team building, and execution. Clients include decentralized trade finance, emerging market commercial bond liquidity, and SEC-regulated longevity fund.</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <div class="timeline-date">April 2023−December 2023</div>
+                        <h3>Identity Forest - Founder</h3>
+                        <p>Architected novel compliance solution for real-time settlement for decentralized and traditional finance. Formed three pre-product, pre-funding partnerships.</p>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <div class="timeline-date">February 2022−March 2023</div>
+                        <h3>Quadrata - AVP, Product</h3>
+                        <p>Launched initial product and scaled to over 1,000 users in over 70 countries. Owned product lifecycle from idea to requirements, development, launch, and iteration.</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <div class="timeline-date">January 2019−December 2021</div>
+                        <h3>Pandorabots - Head of Product and Design</h3>
+                        <p>Developed multi-year product strategy and scaled platform to over 250k bot developers. Implemented development process changes that improved stakeholder satisfaction.</p>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <div class="timeline-date">January 2014−September 2016</div>
+                        <h3>Ripple - Product Manager</h3>
+                        <p>Designed and delivered crypto wallet used by banking partners. Managed cross-functional teams and designed REST API for integrating crypto payment rails into core banking software.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About Travis Nelson</h2>
+                    <p>I'm a product leader with 13 years of experience working cross-functionally with design, engineering, legal, business development, customer success, founders, and executive teams. Throughout my career, I've built consensus for and executed on multi-phased roadmaps, going from 0-to-1 in complex, collaborative, and fast-moving environments.</p>
+                    <p>My background spans various industries including blockchain/DeFi, AI chatbots, SaaS platforms, and neuroscience technologies. I've held leadership roles at companies like Ripple, Pandorabots, and Quadrata, where I've driven product innovation and growth.</p>
+                    <p>I hold a BA in Mathematics from Yale University, which provides me with a strong analytical foundation for data-driven product decisions. Based in Brooklyn, NY, I now offer consulting services to help early-stage startups and established companies define and execute effective product strategies.</p>
+                </div>
+                <div class="about-image">
+                    <img src="travis-nelson.jpg" alt="Travis Nelson" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expertise Section -->
+    <section id="expertise" class="expertise">
+        <div class="container">
+            <div class="section-title">
+                <h2>Core Expertise</h2>
+                <p>Specialized skills developed over 13+ years in product leadership</p>
+            </div>
+            <div class="expertise-grid">
+                <div class="expertise-item">
+                    <h3>Product Roadmapping</h3>
+                    <p>Development of strategic multi-year product roadmaps aligned with business goals and market needs.</p>
+                </div>
+                <div class="expertise-item">
+                    <h3>Agile Implementation</h3>
+                    <p>Creation and optimization of Agile development processes using tools like JIRA to increase team efficiency.</p>
+                </div>
+                <div class="expertise-item">
+                    <h3>Design Thinking</h3>
+                    <p>Training teams in design thinking methodologies to improve user-centered product development.</p>
+                </div>
+                <div class="expertise-item">
+                    <h3>0-to-1 Product Launch</h3>
+                    <p>Taking products from concept to market with structured approach to requirements, development, launch, and iteration.</p>
+                </div>
+                <div class="expertise-item">
+                    <h3>Blockchain/DeFi</h3>
+                    <p>Deep expertise in blockchain technology, decentralized finance, and related compliance solutions.</p>
+                </div>
+                <div class="expertise-item">
+                    <h3>AI Implementation</h3>
+                    <p>Integration of machine learning and AI solutions into product development platforms.</p>
+                </div>
+                <div class="expertise-item">
+                    <h3>API Design</h3>
+                    <p>Creation of intuitive and efficient APIs for integrating complex systems and data sources.</p>
+                </div>
+                <div class="expertise-item">
+                    <h3>Analytics & KPIs</h3>
+                    <p>Development of metrics frameworks to measure product success and guide strategic decisions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">Infinity Etc.</div>
+                <ul class="social-links">
+                    <li><a href="https://www.linkedin.com/in/nelsontravis/">LinkedIn</a></li>
+                </ul>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Infinity etc. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
